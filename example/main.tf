@@ -1,5 +1,5 @@
 module "az_network-interface" {
-  source             = "../../az_network-security-group"
+  source             = "github.com/SebastienArthaud/az_network-security-group.git"
   resourcegroup_name = var.resourcegroup_name
   name               = var.name
   location           = var.location
