@@ -4,10 +4,6 @@ resource "azurerm_network_security_group" "az_network-security-group" {
   name                = var.name
 
   dynamic "security_rule" {
-    #for_each = var.security_rule == [] ? null : {
-    #  for index, rule in var.security_rule:
-    #  rule.name => rule
-    #}
     for_each = var.security_rule != [] ? toset(var.security_rule) : null
     content {
       name                       = security_rule.value.name
