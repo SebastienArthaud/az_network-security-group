@@ -31,7 +31,7 @@ Cloner le repot et effectuer un terraform init/plan/apply afin de voir un exempl
 | resourcegroup_name | Resource group name | `string` | null | yes |
 | location | Région AZURE hébergeant les ressources créées | `string` | null | yes |
 | name | Nom du NSG | `string` | null | yes |
-| security_rule | Règles de sécurité du NSG à créer | `list(object({})` | [] |  no|
+| security_rule | Règles de sécurité du NSG à créer | `list(object({})` | [] |  no |
 | subnet_id | ID du subnet lié au nsg, laisser vide si aucune association souhaitée ! | `string` | "" | no |
 | nic_id | ID due la carte réseau liée au nsg, laisser vide si aucune association souhaitée ! | `string` | "" | no |
 

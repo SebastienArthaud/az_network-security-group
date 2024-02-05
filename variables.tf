@@ -21,7 +21,7 @@ variable "security_rule" {
     access                     = string
     protocol                   = string
     source_port_range          = string
-    destination_port_range     = string
+    destination_port_ranges    = list(string)
     source_address_prefix      = string
     destination_address_prefix = string
   }))

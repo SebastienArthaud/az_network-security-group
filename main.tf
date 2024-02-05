@@ -4,17 +4,21 @@ resource "azurerm_network_security_group" "az_network-security-group" {
   name                = var.name
 
   dynamic "security_rule" {
-    for_each = var.security_rule != [] ? var.security_rule : null
+    #for_each = var.security_rule == [] ? null : {
+    #  for index, rule in var.security_rule:
+    #  rule.name => rule
+    #}
+    for_each = var.security_rule != [] ? toset(var.security_rule) : null
     content {
-      name                       = var.security_rule.value.name
-      priority                   = var.security_rule.value.priority
-      direction                  = var.security_rule.value.direction
-      access                     = var.security_rule.value.access
-      protocol                   = var.security_rule.value.protocol
-      source_port_range          = var.security_rule.value.source_port_range
-      destination_port_range     = var.security_rule.value.destination_port_range
-      source_address_prefix      = var.security_rule.value.source_address_prefix
-      destination_address_prefix = var.security_rule.value.destination_address_prefix
+      name                       = security_rule.value.name
+      priority                   = security_rule.value.priority
+      direction                  = security_rule.value.direction
+      access                     = security_rule.value.access
+      protocol                   = security_rule.value.protocol
+      source_port_range          = security_rule.value.source_port_range
+      destination_port_ranges    = security_rule.value.destination_port_ranges
+      source_address_prefix      = security_rule.value.source_address_prefix
+      destination_address_prefix = security_rule.value.destination_address_prefix
     }
   }
 }
